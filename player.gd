@@ -15,32 +15,37 @@ func _ready():
 
 func _physics_process(delta):
 	if $MultiplayerSynchronizer.get_multiplayer_authority()== multiplayer.get_unique_id():
-	# Add the gravity.
-		if not is_on_floor():
-			velocity.y += gravity * delta
-			
-		$GunRotation.look_at(get_viewport().get_mouse_position())
-		# Handle Jump.
-		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-			velocity.y = JUMP_VELOCITY
-		
-#		syncPos = global_position
-#		syncRot = rotation_degrees
+		$GunRotation.look_at(get_viewport().get_mouse_position())# Add the gravity.
 		if Input.is_action_just_pressed("Fire"):
-			fire.rpc()
+					fire.rpc()
+#		
+		# Handle Jump.
+#		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+#			velocity.y = JUMP_VELOCITY
+		#if not is_on_floor():
+			#velocity.y += gravity * delta
 
-		# Get the input direction and handle the movement/deceleration.
-		# As good practice, you should replace UI actions with custom gameplay actions.
-		var direction = Input.get_axis("ui_left", "ui_right")
-		if direction:
-			velocity.x = direction * SPEED
-		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED)
+		get_input()
 
 		move_and_slide()
+		#syncPos = global_position
+#		syncRot = rotation_degrees
 #	else:
 #		global_position = global_position.lerp(syncPos, .05)
 #		rotation_degrees = lerpf(rotation_degrees, syncRot, .05)
+
+func get_input():
+	velocity = Vector2(0,0)
+	var speed = 200
+	if Input.is_action_pressed('right'):
+		velocity.x += 1
+	if Input.is_action_pressed('left'):
+		velocity.x -= 1
+	if Input.is_action_pressed('up'):
+		velocity.y -= 1
+	if Input.is_action_pressed('down'):
+		velocity.y += 1
+	velocity = velocity.normalized() * speed
 
 @rpc("any_peer", "call_local")
 func fire():
