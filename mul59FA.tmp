@@ -13,51 +13,35 @@ script = ExtResource("1_wp8a0")
 
 [node name="Host" type="Button" parent="."]
 layout_mode = 0
-offset_left = 923.0
-offset_top = 341.0
-offset_right = 1053.0
-offset_bottom = 436.0
+offset_left = 54.0
+offset_top = 38.0
+offset_right = 196.0
+offset_bottom = 167.0
 text = "Host"
 
 [node name="Join" type="Button" parent="."]
 layout_mode = 0
-offset_left = 921.0
-offset_top = 506.0
-offset_right = 1058.0
-offset_bottom = 606.0
+offset_left = 57.0
+offset_top = 178.0
+offset_right = 198.0
+offset_bottom = 297.0
 text = "Join"
 
 [node name="PlayButton" type="Button" parent="."]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 68.0
-offset_right = 741.0
-offset_bottom = 286.0
+offset_left = 219.0
+offset_top = 99.0
+offset_right = 937.0
+offset_bottom = 317.0
 text = "Start Game"
 
-[node name="Name" type="LineEdit" parent="."]
+[node name="LineEdit" type="LineEdit" parent="."]
 layout_mode = 0
-offset_left = 39.0
-offset_top = 26.0
-offset_right = 745.0
-offset_bottom = 58.0
+offset_left = 224.0
+offset_top = 44.0
+offset_right = 930.0
+offset_bottom = 76.0
 placeholder_text = "Name"
-
-[node name="IP" type="LineEdit" parent="."]
-layout_mode = 0
-offset_left = 207.0
-offset_top = 510.0
-offset_right = 913.0
-offset_bottom = 542.0
-placeholder_text = "Host's IP"
-
-[node name="Label" type="Label" parent="." groups=["IPLabel"]]
-layout_mode = 0
-offset_left = 583.0
-offset_top = 353.0
-offset_right = 891.0
-offset_bottom = 376.0
-text = "My IP: "
 
 [connection signal="button_down" from="Host" to="." method="_on_host_button_down"]
 [connection signal="button_down" from="Join" to="." method="_on_join_button_down"]

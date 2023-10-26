@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cwld7ti0ms68j"]
+[gd_scene load_steps=20 format=3 uid="uid://cwld7ti0ms68j"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_3us0m"]
 [ext_resource type="Texture2D" uid="uid://dld54qw3mao0w" path="res://Main Character - Male - Full spritesheet - No Guide.png" id="1_grirq"]
@@ -105,6 +105,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m1yx7"]
 size = Vector2(32, 40)
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_yta66"]
+properties/0/path = NodePath("GunRotation:rotation")
+properties/0/spawn = true
+properties/0/sync = true
+properties/0/watch = false
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/sync = true
+properties/1/watch = false
+
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 script = ExtResource("1_3us0m")
 bullet = ExtResource("2_gobh3")
@@ -132,3 +142,6 @@ texture = ExtResource("2_8kqsh")
 
 [node name="BulletSpawn" type="Node2D" parent="GunRotation"]
 position = Vector2(53, 0)
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_yta66")
