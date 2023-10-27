@@ -103,7 +103,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m1yx7"]
-size = Vector2(32, 40)
+size = Vector2(20, 27)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_yta66"]
 properties/0/path = NodePath("GunRotation:rotation")
@@ -121,14 +121,14 @@ bullet = ExtResource("2_gobh3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(-3, -35)
-scale = Vector2(2.1875, 2.1875)
+position = Vector2(9.53674e-07, -26)
+scale = Vector2(1.5625, 1.625)
 sprite_frames = SubResource("SpriteFrames_l6rhg")
 animation = &"Run"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, -20)
+position = Vector2(1, -13.5)
 shape = SubResource("RectangleShape2D_m1yx7")
 
 [node name="GunRotation" type="Node2D" parent="."]
@@ -145,3 +145,5 @@ position = Vector2(53, 0)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_yta66")
+
+[node name="Camera2D" type="Camera2D" parent="."]

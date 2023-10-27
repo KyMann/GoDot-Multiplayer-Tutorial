@@ -55,7 +55,7 @@ func SendPlayerInformation(name, id):
 
 @rpc("any_peer", "call_local") #any - everyone will call, #authority - only when the authority it goes out to everyone else #local - I will also call on my end #remote - only on remote #reliable uses tcp, slower, #unreliable udp faster risky #unr ordered - comes in ordered
 func start_game():
-	var scene = load("res://testScene.tscn").instantiate()
+	var scene = load("res://world1.tscn").instantiate()
 	get_tree().root.add_child(scene)
 	self.hide()
 
