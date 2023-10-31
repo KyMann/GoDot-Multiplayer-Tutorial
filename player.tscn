@@ -128,7 +128,7 @@ animation = &"Run"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -13.5)
+position = Vector2(-83, -76)
 shape = SubResource("RectangleShape2D_m1yx7")
 
 [node name="GunRotation" type="Node2D" parent="."]

@@ -25,7 +25,7 @@ func _physics_process(delta):
 		#if not is_on_floor():
 			#velocity.y += gravity * delta
 
-		get_input()
+		get_input.rpc()
 
 		move_and_slide()
 		#syncPos = global_position
@@ -38,14 +38,15 @@ func get_input():
 	velocity = Vector2(0,0)
 	var speed = 200
 	if Input.is_action_pressed('right'):
-		velocity.x += 1
+		velocity.x += speed
+		print("right")
 	if Input.is_action_pressed('left'):
-		velocity.x -= 1
+		velocity.x -= speed
+		print("left")
 	if Input.is_action_pressed('up'):
-		velocity.y -= 1
+		velocity.y -= speed
 	if Input.is_action_pressed('down'):
-		velocity.y += 1
-	velocity = velocity.normalized() * speed
+		velocity.y += speed
 
 @rpc("any_peer", "call_local")
 func fire():
