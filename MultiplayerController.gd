@@ -55,7 +55,7 @@ func SendPlayerInformation(name, id):
 
 @rpc("any_peer", "call_local") #any - everyone will call, #authority - only when the authority it goes out to everyone else #local - I will also call on my end #remote - only on remote #reliable uses tcp, slower, #unreliable udp faster risky #unr ordered - comes in ordered
 func start_game():
-	var scene = load("res://testScene.tscn").instantiate()
+	var scene = load("res://world1.tscn").instantiate()
 	get_tree().root.add_child(scene)
 	self.hide()
 
@@ -79,10 +79,10 @@ func host_game():
 func fetch_ip():
 	var http = HTTPRequest.new()
 	add_child(http)
-	var ip = await http.request_completed.connect(return_ip)
-	await http.request("https://api.ipify.org")
+	var _ip = await http.request_completed.connect(return_ip)
+	http.request("https://api.ipify.org")
 
-func return_ip(result, response_code, headers, body):
+func return_ip(_result, _response_code, _headers, body):
 	var ip = body.get_string_from_utf8()
 	print("return", ip)
 	Address = ip

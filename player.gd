@@ -15,7 +15,8 @@ func _ready():
 
 func _physics_process(delta):
 	if $MultiplayerSynchronizer.get_multiplayer_authority()== multiplayer.get_unique_id():
-		$GunRotation.look_at(get_viewport().get_mouse_position())# Add the gravity.
+		print(get_local_mouse_position())
+		$GunRotation.look_at(Vector2(get_global_mouse_position()))
 		if Input.is_action_just_pressed("Fire"):
 					fire.rpc()
 #		
@@ -32,17 +33,15 @@ func _physics_process(delta):
 #		syncRot = rotation_degrees
 #	else:
 #		global_position = global_position.lerp(syncPos, .05)
-#		rotation_degrees = lerpf(rotation_degrees, syncRot, .05)
+#		rotation_degrees = lerpf(rotation_degrees, syncRot, .05)s
 
 func get_input():
 	velocity = Vector2(0,0)
 	var speed = 200
 	if Input.is_action_pressed('right'):
 		velocity.x += speed
-		print("right")
 	if Input.is_action_pressed('left'):
 		velocity.x -= speed
-		print("left")
 	if Input.is_action_pressed('up'):
 		velocity.y -= speed
 	if Input.is_action_pressed('down'):
