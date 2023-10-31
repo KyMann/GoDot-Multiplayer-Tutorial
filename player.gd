@@ -25,7 +25,7 @@ func _physics_process(delta):
 		#if not is_on_floor():
 			#velocity.y += gravity * delta
 
-		get_input.rpc()
+		get_input()
 
 		move_and_slide()
 		#syncPos = global_position
