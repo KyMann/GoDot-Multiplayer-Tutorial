@@ -8,19 +8,20 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 #var syncPos = Vector2(0,0)
 #var syncRot = 0
 @export var bullet :PackedScene
+var follow_cam : Camera2D
 
 #TODO: set up custom variables to handle sync to save you bandwidth
 func _ready():
 	$MultiplayerSynchronizer.set_multiplayer_authority(str(name).to_int())
+	follow_cam = get_node("LocalWindow/Camera2D")
 
 func _physics_process(delta):
 	if $MultiplayerSynchronizer.get_multiplayer_authority()== multiplayer.get_unique_id():
-		print(get_local_mouse_position())
 		$GunRotation.look_at(Vector2(get_global_mouse_position()))
 		if Input.is_action_just_pressed("Fire"):
 					fire.rpc()
 #		
-		# Handle Jump.
+		# Handle Jump.a
 #		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 #			velocity.y = JUMP_VELOCITY
 		#if not is_on_floor():
@@ -29,6 +30,8 @@ func _physics_process(delta):
 		get_input()
 
 		move_and_slide()
+		follow_cam.global_position = global_position
+		#print(follow_cam.global_position, global_position) These always match, and are seperate, and even move around with the player, but have no effect on camera 
 		#syncPos = global_position
 #		syncRot = rotation_degrees
 #	else:
@@ -53,3 +56,12 @@ func fire():
 	b.global_position = $GunRotation/BulletSpawn.global_position
 	b.rotation_degrees = $GunRotation.rotation_degrees
 	get_tree().root.add_child(b)
+
+func hurt(damage):
+	self.health -= damage
+	print(self.health)
+	if self.health <= 0:
+		self.death()
+		
+func death():
+	self.queue_free()
