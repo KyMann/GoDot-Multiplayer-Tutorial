@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://dgub7526q0ggx"]
+[gd_scene load_steps=11 format=3 uid="uid://dgub7526q0ggx"]
 
 [ext_resource type="Script" path="res://SceneManager.gd" id="1_tmqlg"]
 [ext_resource type="PackedScene" uid="uid://cwld7ti0ms68j" path="res://player.tscn" id="2_qkfkm"]
 [ext_resource type="Texture2D" uid="uid://chlnt56mtnfqo" path="res://parallax_background_layer_6.png" id="3_nlovj"]
 [ext_resource type="Texture2D" uid="uid://bh4xilvgu3miq" path="res://icon.svg" id="4_74kj5"]
 [ext_resource type="Texture2D" uid="uid://6r0yoxgn80ir" path="res://main_tileset.png" id="5_jaqke"]
+[ext_resource type="PackedScene" uid="uid://5mh5kp25nyfw" path="res://shooter_enemy.tscn" id="6_mv802"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bsyir"]
 size = Vector2(1647.75, 120)
@@ -1078,3 +1079,6 @@ position = Vector2(124, 1491)
 
 [node name="3" type="Node2D" parent="SpawnLocations" groups=["PlayerSpawnPoint"]]
 position = Vector2(1487, 1488)
+
+[node name="ShooterEnemy" parent="." instance=ExtResource("6_mv802")]
+position = Vector2(816, 825)
