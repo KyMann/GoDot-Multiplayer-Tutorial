@@ -3,6 +3,7 @@ extends Control
 @export var port = 8910
 var Address
 var peer
+var number_players
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +21,7 @@ func _ready():
 func _process(delta):
 	pass
 
+##Multiplayer ----------
 #this is called on the server and clients when someone connects
 func peer_connected(id):
 	print("Player Connected " + str(id))
@@ -37,6 +39,7 @@ func peer_disconnected(id):
 func connected_to_server():
 	print("connected to Server!")
 	SendPlayerInformation.rpc_id(1, $Name.text, multiplayer.get_unique_id())
+
 #this is only fired from clients
 func connection_failed():
 	print("Couldn't connect")
@@ -55,7 +58,7 @@ func SendPlayerInformation(name, id):
 			SendPlayerInformation.rpc(GameManager.Players[playerID].name, playerID)
 
 @rpc("any_peer", "call_local") #any - everyone will call, #authority - only when the authority it goes out to everyone else #local - I will also call on my end #remote - only on remote #reliable uses tcp, slower, #unreliable udp faster risky #unr ordered - comes in ordered
-func start_game():
+func start_online_game():
 	var scene = load("res://world1.tscn").instantiate()
 	get_tree().root.add_child(scene)
 	self.hide()
@@ -96,7 +99,26 @@ func _on_join_button_down():
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER) #compression has to be the same across the board
 	multiplayer.set_multiplayer_peer(peer)
 
-func _on_play_button_button_down():
+func _on_online_start_button_down():
 	#remote procedure call, call a function on any or all peers
 	#rpc needs to be a seperate function with the proper annotations
-	start_game.rpc() #.rpc call across everyone, .rcp_id calls only on one peer
+	start_online_game.rpc() #.rpc call across everyone, .rcp_id calls only on one peer
+
+func _on_single_player_start_button_down():
+	SendPlayerInformation(name, 1)
+	_play_local()
+
+func _on_split_screen_start_button_down():
+	for i in number_players:
+		SendPlayerInformation(name+str(i), i)
+	_play_local()
+	
+func _play_local():
+	var scene = load("res://splitscreen_component.tscn").instantiate()
+	get_tree().root.add_child(scene)
+	self.hide()
+
+func _on_number_of_players_text_changed(new_text):
+	#TODO: switch this from a text input to a tick box or something less easy to break
+	if int(new_text) < 5 and int(new_text) > 0:
+		number_players = int(new_text)

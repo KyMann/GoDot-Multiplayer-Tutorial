@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="multiplayerTutorial"
-run/main_scene="res://multiplayerScene.tscn"
+run/main_scene="res://MenuScene.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -22,6 +22,11 @@ GameManager="*res://GameManager.gd"
 [dotnet]
 
 project/assembly_name="multiplayer Lan Tutorial"
+
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
 
 [input]
 

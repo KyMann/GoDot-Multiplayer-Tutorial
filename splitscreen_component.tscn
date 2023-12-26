@@ -1,0 +1,81 @@
+[gd_scene load_steps=4 format=3 uid="uid://bjhqlts6rleob"]
+
+[ext_resource type="Script" path="res://Splitscreen_component.gd" id="1_2m5nh"]
+[ext_resource type="Texture2D" uid="uid://bm6j0o0xhddn4" path="res://background.png" id="2_fbg5a"]
+[ext_resource type="PackedScene" uid="uid://dgub7526q0ggx" path="res://world1.tscn" id="3_ku8tp"]
+
+[node name="Splitscreen_component" type="CanvasLayer"]
+script = ExtResource("1_2m5nh")
+
+[node name="bordercolor" type="TextureRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_fbg5a")
+expand_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/h_separation = 5
+theme_override_constants/v_separation = 5
+columns = 2
+
+[node name="Container1" type="SubViewportContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport1" type="SubViewport" parent="GridContainer/Container1"]
+handle_input_locally = false
+size = Vector2i(574, 322)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="GridContainer/Container1/SubViewport1"]
+
+[node name="world1" parent="GridContainer/Container1/SubViewport1" instance=ExtResource("3_ku8tp")]
+
+[node name="Container2" type="SubViewportContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport2" type="SubViewport" parent="GridContainer/Container2"]
+handle_input_locally = false
+size = Vector2i(573, 322)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="GridContainer/Container2/SubViewport2"]
+
+[node name="Container3" type="SubViewportContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport3" type="SubViewport" parent="GridContainer/Container3"]
+handle_input_locally = false
+size = Vector2i(574, 321)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="GridContainer/Container3/SubViewport3"]
+
+[node name="Container4" type="SubViewportContainer" parent="GridContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+stretch = true
+
+[node name="SubViewport4" type="SubViewport" parent="GridContainer/Container4"]
+handle_input_locally = false
+size = Vector2i(573, 321)
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="GridContainer/Container4/SubViewport4"]
