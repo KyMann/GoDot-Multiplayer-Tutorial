@@ -1,11 +1,13 @@
 extends CanvasLayer
 
-onready var viewport1 = $GridContainer/Container1/SubViewport1
-onready var grid = $GridContainer
+@onready var viewport1 = $GridContainer/Container1/SubViewport1
+@onready var grid = $GridContainer
 
 var viewports
 
 func _ready():
+	viewport1 = $GridContainer/Container1/SubViewport1
+	
 	for i in range(1, grid.get_child_count() + 1):
 		var view : Viewport = get_node("GridContainer/Container" + str(i) + "/SubViewport" + str(i))
 		if(view != null):
