@@ -18,7 +18,7 @@ func _ready():
 	get_tree().get_first_node_in_group("IPLabel").text = "My IP: " + Address
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 ##Multiplayer ----------
@@ -45,13 +45,14 @@ func connection_failed():
 	print("Couldn't connect")
 
 @rpc("any_peer")
-func SendPlayerInformation(name, id):
+func SendPlayerInformation(player_name, id):
 	if !GameManager.Players.has(id):
 		GameManager.Players[id]= {
-			"name": name,
+			"name": player_name,
 			"id":id,
 			"score":0,
-			"health":3
+			"health":3,
+			"scene": ""
 		}
 	if multiplayer.is_server():
 		for playerID in GameManager.Players:
