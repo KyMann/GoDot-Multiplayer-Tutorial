@@ -8,6 +8,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 #var syncPos = Vector2(0,0)
 #var syncRot = 0
 @export var bullet :PackedScene
+@export var controls: Resource = null
 var follow_cam : Camera2D
 
 #TODO: set up custom variables to handle sync to save you bandwidth
@@ -18,7 +19,7 @@ func _ready():
 func _physics_process(delta):
 	if $MultiplayerSynchronizer.get_multiplayer_authority()== multiplayer.get_unique_id():
 		$GunRotation.look_at(Vector2(get_global_mouse_position()))
-		if Input.is_action_just_pressed("Fire"):
+		if Input.is_action_just_pressed(controls.fire):
 					fire.rpc()
 #		
 		# Handle Jump.a
@@ -41,13 +42,13 @@ func _physics_process(delta):
 func get_input():
 	velocity = Vector2(0,0)
 	var speed = 200
-	if Input.is_action_pressed('right'):
+	if Input.is_action_pressed(controls.move_right):
 		velocity.x += speed
-	if Input.is_action_pressed('left'):
+	if Input.is_action_pressed(controls.move_left):
 		velocity.x -= speed
-	if Input.is_action_pressed('up'):
+	if Input.is_action_pressed(controls.move_up):
 		velocity.y -= speed
-	if Input.is_action_pressed('down'):
+	if Input.is_action_pressed(controls.move_down):
 		velocity.y += speed
 
 @rpc("any_peer", "call_local")

@@ -7,6 +7,7 @@ func _ready():
 	for playerId in GameManager.Players:
 		var currentPlayerScene = PlayerScene.instantiate()
 		currentPlayerScene.name=str(playerId)
+		currentPlayerScene.controls=load("res://p"+str(playerId)+"_controls.tres") ##"res://p0_controls.tres"
 		add_child(currentPlayerScene)
 
 		for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoint"):

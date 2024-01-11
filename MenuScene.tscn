@@ -87,10 +87,9 @@ max_length = 1
 
 [connection signal="button_down" from="Host" to="." method="_on_host_button_down"]
 [connection signal="button_down" from="Join" to="." method="_on_join_button_down"]
-[connection signal="button_down" from="OnlineStart" to="." method="_on_online_start_button_down"]
 [connection signal="button_down" from="OnlineStart" to="." method="_on_play_button_button_down"]
+[connection signal="button_down" from="OnlineStart" to="." method="_on_online_start_button_down"]
 [connection signal="button_down" from="SplitScreenStart" to="." method="_on_split_screen_start_button_down"]
-[connection signal="button_down" from="SplitScreenStart" to="." method="_on_play_button_button_down"]
-[connection signal="button_down" from="SinglePlayerStart" to="." method="_on_single_player_start_button_down"]
 [connection signal="button_down" from="SinglePlayerStart" to="." method="_on_play_button_button_down"]
+[connection signal="button_down" from="SinglePlayerStart" to="." method="_on_single_player_start_button_down"]
 [connection signal="text_changed" from="NumberOfPlayers" to="." method="_on_number_of_players_text_changed"]
