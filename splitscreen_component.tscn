@@ -17,6 +17,7 @@ texture = ExtResource("2_fbg5a")
 expand_mode = 2
 
 [node name="GridContainer" type="GridContainer" parent="."]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -34,48 +35,9 @@ stretch = true
 
 [node name="SubViewport0" type="SubViewport" parent="GridContainer/Container0"]
 handle_input_locally = false
-size = Vector2i(2, 2)
+size = Vector2i(576, 648)
 render_target_update_mode = 4
 
-[node name="Camera2D" type="Camera2D" parent="GridContainer/Container0/SubViewport0"]
+[node name="Camera0" type="Camera2D" parent="GridContainer/Container0/SubViewport0"]
 
 [node name="world1" parent="GridContainer/Container0/SubViewport0" instance=ExtResource("3_ku8tp")]
-
-[node name="Container1" type="SubViewportContainer" parent="GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-stretch = true
-
-[node name="SubViewport1" type="SubViewport" parent="GridContainer/Container1"]
-handle_input_locally = false
-size = Vector2i(2, 2)
-render_target_update_mode = 4
-
-[node name="Camera2D" type="Camera2D" parent="GridContainer/Container1/SubViewport1"]
-
-[node name="Container2" type="SubViewportContainer" parent="GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-stretch = true
-
-[node name="SubViewport2" type="SubViewport" parent="GridContainer/Container2"]
-handle_input_locally = false
-size = Vector2i(2, 2)
-render_target_update_mode = 4
-
-[node name="Camera2D" type="Camera2D" parent="GridContainer/Container2/SubViewport2"]
-
-[node name="Container3" type="SubViewportContainer" parent="GridContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-stretch = true
-
-[node name="SubViewport3" type="SubViewport" parent="GridContainer/Container3"]
-handle_input_locally = false
-size = Vector2i(2, 2)
-render_target_update_mode = 4
-
-[node name="Camera2D" type="Camera2D" parent="GridContainer/Container3/SubViewport3"]

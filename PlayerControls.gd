@@ -7,3 +7,5 @@ extends Resource
 @export var move_up := "p0_move_up"
 @export var move_down := "p0_move_down"
 @export var fire := "p0_fire"
+@export var type := "mouse"
+@export var menu := "p0_menu"

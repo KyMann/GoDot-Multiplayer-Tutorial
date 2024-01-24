@@ -50,7 +50,7 @@ shape = SubResource("CapsuleShape2D_iup3u")
 position = Vector2(-2, -20)
 rotation = 0.640536
 
-[node name="Famas" type="Sprite2D" parent="GunRotation"]
+[node name="Arm" type="Sprite2D" parent="GunRotation"]
 texture_filter = 1
 position = Vector2(5.1893, 3.6154)
 rotation = 3.12239

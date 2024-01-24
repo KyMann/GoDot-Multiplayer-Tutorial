@@ -15,7 +15,7 @@ func _ready():
 	multiplayer.connection_failed.connect(connection_failed)
 	if "--server" in OS.get_cmdline_args():
 		host_game()
-	get_tree().get_first_node_in_group("IPLabel").text = "My IP: " + Address
+	#get_tree().get_first_node_in_group("IPLabel").text = "My IP: " + Address
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
@@ -52,7 +52,8 @@ func SendPlayerInformation(player_name, id):
 			"id":id,
 			"score":0,
 			"health":3,
-			"scene": ""
+			"scene": "",
+			"controls": ""
 		}
 	if multiplayer.is_server():
 		for playerID in GameManager.Players:
@@ -106,7 +107,7 @@ func _on_online_start_button_down():
 	start_online_game.rpc() #.rpc call across everyone, .rcp_id calls only on one peer
 
 func _on_single_player_start_button_down():
-	SendPlayerInformation(name, 1)
+	SendPlayerInformation(name, 0)
 	_play_local()
 
 func _on_split_screen_start_button_down():
@@ -115,7 +116,9 @@ func _on_split_screen_start_button_down():
 	_play_local()
 	
 func _play_local():
-	var scene = load("res://splitscreen_component.tscn").instantiate()
+	#set active world in GameMangager
+	GameManager.activeWorld = "world1" ##TODO: world selection
+	var scene = load("res://splitscreen_component.tscn").instantiate() #splitscreen component auto sizes to number of players, even 1
 	get_tree().root.add_child(scene)
 	self.hide()
 

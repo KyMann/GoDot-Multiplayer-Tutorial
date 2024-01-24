@@ -1,12 +1,14 @@
-[gd_resource type="Resource" load_steps=2 format=2]
+[gd_resource type="Resource" script_class="PlayerControls" load_steps=2 format=3 uid="uid://cn4hm334jalqe"]
 
-[ext_resource path="res://PlayerControls.gd" type="Script" id =1]
+[ext_resource type="Script" path="res://PlayerControls.gd" id="1"]
 
 [resource]
-script = ExtResource( 1 )
+script = ExtResource("1")
 player_index = 1
 move_left = "p1_move_left"
 move_right = "p1_move_right"
 move_up = "p1_move_up"
 move_down = "p1_move_down"
 fire = "p1_fire"
+type = "controller"
+menu = "p1_menu"
