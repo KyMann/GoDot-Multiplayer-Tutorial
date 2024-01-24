@@ -16,7 +16,7 @@ func _physics_process(_delta):
 		if Input.is_action_just_pressed(self.controls.fire):
 			fire.rpc()
 	
-	$GunRotation.rotation = gun_angle(self.controls.type, self.controls.player_index)
+	$GunRotation.rotation = gun_angle(self.controls.type, self.controls.player_index-1)
 	if Input.is_action_just_pressed(self.controls.fire):
 		fire()
 		
@@ -51,6 +51,7 @@ func gun_angle(type, device_int):
 		rs_look.y = Input.get_joy_axis(device_int, JOY_AXIS_RIGHT_Y)
 		rs_look.x = Input.get_joy_axis(device_int, JOY_AXIS_RIGHT_X)
 		gun_rotation = rs_look.angle()
+		print(rs_look.y)
 		#TODO is this always a radian?
 	return gun_rotation
 	
